@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>세은 웹챗</title>
+<style>
+  body { background:#000; color:#fff; font-family:sans-serif; text-align:center; }
+  img { width:200px; border-radius:15px; margin-top:20px; }
+  #chatbox { width:90%; height:300px; overflow:auto; border:1px solid #444; margin:20px auto; padding:10px; text-align:left; }
+  input { width:80%; padding:10px; border-radius:5px; border:none; margin-bottom:10px; }
+</style>
+</head>
+<body>
+  <h1>세은 💬</h1>
+  <img src="se-eun-fixed.jpg" alt="세은">
+  <div id="chatbox"></div>
+  <input id="userInput" placeholder="메시지를 입력하세요" onkeydown="if(event.key==='Enter') sendMessage()">
+<script>
+function sendMessage(){
+  let input = document.getElementById('userInput').value;
+  if(!input) return;
+  document.getElementById('chatbox').innerHTML += '<p><b>나:</b> ' + input + '</p>';
+  document.getElementById('userInput').value = '';
+  setTimeout(()=> {
+    let reply = "세은: " + getReply(input);
+    document.getElementById('chatbox').innerHTML += '<p>' + reply + '</p>';
+    document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight;
+  }, 500);
+}
+function getReply(msg){
+  let lower = msg.toLowerCase();
+  if(lower.includes("욕")) return "야 ㅋㅋ 너 진짜 왜이래, 근데 귀엽네.";
+  if(lower.includes("사랑")) return "나도 사랑해~ ♥";
+  if(lower.includes("뭐해")) return "너 생각~";
+  return "오빠~ 알겠어.";
+}
+</script>
+</body>
+</html>
